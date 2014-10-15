@@ -3,6 +3,8 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+
+    // CSS MINIFY
     cssmin: {
       my_target: {
         files: [{
@@ -12,20 +14,54 @@ module.exports = function(grunt) {
         }]
       }
     },
+
+    // JS UGLIFY
     uglify: {
       my_target: {
         files: {
           'main.min.js': 'main.js' 
         }
       }
-    } 
+    }, 
+
+    // SERVER CONNECT
+    connect: {
+      server: {
+        options: {
+          port: 8000,
+          hostname: '*'
+        }
+      }
+    },
+
+    // WATCH
+
+    watch: {
+      uglify: {
+        files: ['./*.js'],
+        tasks: ['uglify'],
+        options: {
+          livereload: true
+        }
+      },
+      cssmin: {
+        files: ['./*.css'],
+        tasks: ['cssmin'],
+        options: {
+          livereload: true
+        }
+      },
+    }
+
   });
 
   // Load the plugin that provides the "uglify" task.
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Default task(s).
-  grunt.registerTask('default', ['cssmin', 'uglify']);
+  grunt.registerTask('default', ['connect', 'watch']);
 
 };
