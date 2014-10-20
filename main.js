@@ -30,10 +30,10 @@ function init()
   container = document.getElementById( 'ThreeJS' );
   container.appendChild( renderer.domElement );
   // CONTROLS
-  controls = new THREE.OrbitControls( camera, renderer.domElement );
+  //controls = new THREE.OrbitControls( camera, renderer.domElement );
 
   // set up camera controller
-  headtrackr.controllers.three.realisticAbsoluteCameraControl(camera, 29, [0,0,350], new THREE.Vector3(0,0,0), {damping : 0.6});
+  headtrackr.controllers.three.realisticAbsoluteCameraControl(camera, 27, [0,0,350], new THREE.Vector3(0,0,0), {damping : 2});
   
   // Face detection setup
   var htracker = new headtrackr.Tracker({cameraOffset : -6.5});
@@ -54,6 +54,9 @@ function init()
   // video.type = ' video/ogg; codecs="theora, vorbis" ';
   video.src = "videos/video.mp4";
   video.load(); // must call after setting/changing source
+  video.oncanplaythrough = function() {
+    video.play();
+  }
   
   // alternative method -- 
   // create DIV in HTML:
@@ -81,7 +84,7 @@ function init()
   //    movie image will be scaled to fit these dimensions.
   var movieGeometry = new THREE.PlaneGeometry( videoImage.width, videoImage.height, 4, 4 );
   var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
-  movieScreen.position.set(0,0,0);
+  movieScreen.position.set(0,-50,0);
   movieScreen.rotation.z += 3.14159265;
   scene.add(movieScreen);
 
@@ -97,7 +100,6 @@ function init()
     function (event) {
       console.log(event.status);
       if (event.status == "found") {
-        video.play();
       }
     }
   );  
