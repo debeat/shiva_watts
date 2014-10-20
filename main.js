@@ -1,9 +1,3 @@
-/*
-  Three.js "tutorials by example"
-  Author: Lee Stemkoski
-  Date: July 2013 (three.js v59dev)
-*/
-  
 // MAIN
 
 // standard global variables
@@ -28,7 +22,7 @@ function init()
   var VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 0.1, FAR = 20000;
   camera = new THREE.PerspectiveCamera( VIEW_ANGLE, ASPECT, NEAR, FAR);
   scene.add(camera);
-  camera.position.set(0,150,400);
+  camera.position.set(0,0,400);
   camera.lookAt(scene.position);  
   // RENDERER
   renderer = new THREE.CanvasRenderer(); 
@@ -39,25 +33,15 @@ function init()
   controls = new THREE.OrbitControls( camera, renderer.domElement );
 
   // set up camera controller
-  headtrackr.controllers.three.realisticAbsoluteCameraControl(camera, 23, [0,0,0], new THREE.Vector3(0,0,0), {damping : 0.4});
+  headtrackr.controllers.three.realisticAbsoluteCameraControl(camera, 29, [0,0,350], new THREE.Vector3(0,0,0), {damping : 0.6});
   
   // Face detection setup
-  var htracker = new headtrackr.Tracker({altVideo : {ogv : "./media/capture5.ogv", mp4 : "./media/capture5.mp4"}, cameraOffset : 5});
+  var htracker = new headtrackr.Tracker({cameraOffset : -6.5});
   htracker.init(videoInput, canvasInput);
   htracker.start();
   // EVENTS
   THREEx.WindowResize(renderer, camera);
   THREEx.FullScreen.bindKey({ charCode : 'm'.charCodeAt(0) });
-  // LIGHT
-  var light = new THREE.PointLight(0xffffff);
-  light.position.set(0,250,0);
-  scene.add(light);
-  // SKYBOX/FOG
-  var skyBoxGeometry = new THREE.CubeGeometry( 10000, 10000, 10000 );
-  var skyBoxMaterial = new THREE.MeshBasicMaterial( { color: 0x9999ff, side: THREE.BackSide } );
-  var skyBox = new THREE.Mesh( skyBoxGeometry, skyBoxMaterial );
-  // scene.add(skyBox);
-  scene.fog = new THREE.FogExp2( 0x9999ff, 0.00025 );
   
   
   ///////////
@@ -70,7 +54,6 @@ function init()
   // video.type = ' video/ogg; codecs="theora, vorbis" ';
   video.src = "videos/video.mp4";
   video.load(); // must call after setting/changing source
-  video.play();
   
   // alternative method -- 
   // create DIV in HTML:
@@ -81,8 +64,8 @@ function init()
   // video = document.getElementById( 'myVideo' );
   
   videoImage = document.createElement( 'canvas' );
-  videoImage.width = 1280;
-  videoImage.height = 720;
+  videoImage.width = 1920;
+  videoImage.height = 1080;
 
   videoImageContext = videoImage.getContext( '2d' );
   // background color if no video present
@@ -99,11 +82,25 @@ function init()
   var movieGeometry = new THREE.PlaneGeometry( videoImage.width, videoImage.height, 4, 4 );
   var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
   movieScreen.position.set(0,0,0);
+  movieScreen.rotation.z += 3.14159265;
   scene.add(movieScreen);
+
+  // create a set of coordinate axes to help orient user
+  //  //    specify length in pixels in each direction
+  var axes = new THREE.AxisHelper(200);
+  scene.add( axes );
   
-  camera.position.set(0,0,600);
+  camera.position.set(0,0,900);
   camera.lookAt(movieScreen.position);
-  
+
+  document.addEventListener('headtrackrStatus', 
+    function (event) {
+      console.log(event.status);
+      if (event.status == "found") {
+        video.play();
+      }
+    }
+  );  
 }
 
 function animate() 
