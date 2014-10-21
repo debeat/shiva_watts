@@ -13,8 +13,7 @@ init();
 animate();
 
 // FUNCTIONS    
-function init() 
-{
+function init() {
   // SCENE
   scene = new THREE.Scene();
   // CAMERA
@@ -22,8 +21,6 @@ function init()
   var VIEW_ANGLE = 45, ASPECT = SCREEN_WIDTH / SCREEN_HEIGHT, NEAR = 0.1, FAR = 20000;
   camera = new THREE.PerspectiveCamera( VIEW_ANGLE, ASPECT, NEAR, FAR);
   scene.add(camera);
-  camera.position.set(0,0,400);
-  camera.lookAt(scene.position);  
   // RENDERER
   renderer = new THREE.CanvasRenderer(); 
   renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -32,10 +29,6 @@ function init()
   // CONTROLS
   //controls = new THREE.OrbitControls( camera, renderer.domElement );
 
-  // set up camera controller
-  headtrackr.controllers.three.realisticAbsoluteCameraControl(camera, 20, [0,-90,350], new THREE.Vector3(0,0,0), {
-  damping : 4
-});
   
   // Face detection setup
   var htracker = new headtrackr.Tracker({cameraOffset : -6.5});
@@ -44,7 +37,6 @@ function init()
   // EVENTS
   THREEx.WindowResize(renderer, camera);
   THREEx.FullScreen.bindKey({ charCode : 'm'.charCodeAt(0) });
-  
   
   ///////////
   // VIDEO //
@@ -96,6 +88,10 @@ function init()
   camera.position.set(0,0,900);
   camera.lookAt(movieScreen.position);
 
+
+  // set up camera controller
+  headtrackr.controllers.three.realisticAbsoluteCameraControl(camera, 3, [0,-20,900], movieScreen.position, { damping : 0.9 });
+
   document.addEventListener('headtrackrStatus', 
     function (event) {
       console.log(event.status);
@@ -104,40 +100,21 @@ function init()
           video.play();
         }, 1000);
       }
-    }
-  );  
+  });  
 }
 
-function animate() 
-{
-    requestAnimationFrame( animate );
+function animate() {
+  requestAnimationFrame( animate );
   render();   
   update();
 }
 
-function update()
-{
-  if ( keyboard.pressed("p") )
-    video.play();
-    
-  if ( keyboard.pressed("space") )
-    video.pause();
-
-  if ( keyboard.pressed("s") ) // stop video
-  {
-    video.pause();
-    video.currentTime = 0;
-  }
-  
-  if ( keyboard.pressed("r") ) // rewind video
-    video.currentTime = 0;
-  
+function update() {
+    controls.update();
 }
 
-function render() 
-{ 
-  if ( video.readyState === video.HAVE_ENOUGH_DATA ) 
-  {
+function render() { 
+  if ( video.readyState === video.HAVE_ENOUGH_DATA ) {
     videoImageContext.drawImage( video, 0, 0 );
     if ( videoTexture ) 
       videoTexture.needsUpdate = true;
