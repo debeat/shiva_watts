@@ -33,7 +33,9 @@ function init()
   //controls = new THREE.OrbitControls( camera, renderer.domElement );
 
   // set up camera controller
-  headtrackr.controllers.three.realisticAbsoluteCameraControl(camera, 27, [0,0,350], new THREE.Vector3(0,0,0), {damping : 2});
+  headtrackr.controllers.three.realisticAbsoluteCameraControl(camera, 20, [0,-90,350], new THREE.Vector3(0,0,0), {
+  damping : 4
+});
   
   // Face detection setup
   var htracker = new headtrackr.Tracker({cameraOffset : -6.5});
@@ -49,14 +51,12 @@ function init()
   ///////////
   
   // create the video element
-  video = document.createElement( 'video' );
+  //video = document.createElement( 'video' );
   // video.id = 'video';
   // video.type = ' video/ogg; codecs="theora, vorbis" ';
-  video.src = "videos/video.mp4";
+  //video.src = "videos/video.mp4";
+  video = document.getElementById( 'viewVideo' );
   video.load(); // must call after setting/changing source
-  video.oncanplaythrough = function() {
-    video.play();
-  }
   
   // alternative method -- 
   // create DIV in HTML:
@@ -67,8 +67,8 @@ function init()
   // video = document.getElementById( 'myVideo' );
   
   videoImage = document.createElement( 'canvas' );
-  videoImage.width = 1920;
-  videoImage.height = 1080;
+  videoImage.width = 1200;
+  videoImage.height = 674;
 
   videoImageContext = videoImage.getContext( '2d' );
   // background color if no video present
@@ -84,7 +84,7 @@ function init()
   //    movie image will be scaled to fit these dimensions.
   var movieGeometry = new THREE.PlaneGeometry( videoImage.width, videoImage.height, 4, 4 );
   var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
-  movieScreen.position.set(0,-50,0);
+  movieScreen.position.set(0,-80,0);
   movieScreen.rotation.z += 3.14159265;
   scene.add(movieScreen);
 
@@ -100,6 +100,9 @@ function init()
     function (event) {
       console.log(event.status);
       if (event.status == "found") {
+        setTimeout( function() {
+          video.play();
+        }, 1000);
       }
     }
   );  
@@ -129,7 +132,6 @@ function update()
   if ( keyboard.pressed("r") ) // rewind video
     video.currentTime = 0;
   
-  controls.update();
 }
 
 function render() 
