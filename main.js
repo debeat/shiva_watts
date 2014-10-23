@@ -36,7 +36,6 @@ function init() {
   var htracker = new headtrackr.Tracker({cameraOffset : offset});
   htracker.init(videoInput, canvasInput);
   htracker.start();
-
   // EVENTS
   THREEx.WindowResize(renderer, camera);
   THREEx.FullScreen.bindKey({ charCode : 'm'.charCodeAt(0) });
@@ -87,8 +86,6 @@ function init() {
   //  //    specify length in pixels in each direction
   // var axes = new THREE.AxisHelper(200);  scene.add( axes );
   
-  camera.position.set(0,0,100);
-  camera.lookAt(movieScreen.position);
 
   /////////
   // SKY //
@@ -114,7 +111,7 @@ function init() {
   if( SCREEN_WIDTH > 1700 )
     headtrackr.controllers.three.realisticAbsoluteCameraControl(camera, 3, [0,-20,900], movieScreen.position, { damping : 0.9 });
   else
-    headtrackr.controllers.three.realisticAbsoluteCameraControl(camera, 3, [0,-20,1200], movieScreen.position, { damping : 0.9 });
+    headtrackr.controllers.three.realisticAbsoluteCameraControl(camera, 6, [0,-20,750], movieScreen.position, { damping : 0.9 });
 
   document.addEventListener('headtrackrStatus', 
     function (event) {
