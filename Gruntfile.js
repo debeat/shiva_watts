@@ -19,7 +19,7 @@ module.exports = function(grunt) {
     uglify: {
       my_target: {
         files: {
-          'main.min.js': 'main.js' 
+          'main.min.js': ['node_modules/three/three.js', 'lib/headtrackr.js','lib/THREEx.WindowResize.js','./main.js'] 
         }
       }
     }, 
