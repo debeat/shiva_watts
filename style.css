@@ -52,14 +52,154 @@ canvas {
 
 
 .container {
+  padding: 30px;
   position: relative;
+  top: 100vh;
   z-index: 99999;
-  max-width: 750px;
+  max-width: 800px;
   font-size: 29px;
-  color: rgba(255, 255, 255, 0.54);
-  margin: 100vh auto 0;
+  color: rgb(255, 255, 255);
+  margin: 0 auto;
   font-family: 'Permanent Marker', cursive;
-  line-height: 1.2;
-  letter-spacing: 2px;
+  line-height: 2.4;
+  letter-spacing: 3px;
   text-align: justify;
+  transition: all 300ms;
+}
+
+.container:before {
+  content: '';
+  background: url('img/scroll.png') center no-repeat;
+  width: 50px;
+  height: 100px;
+  margin: 0 auto;
+  display: block;
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  margin-left: -50px;
+}
+
+#allow {
+  color: #fff;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 99999;
+  text-align: center;
+  font-family: 'Permanent Marker';
+}
+
+#allow span {
+  background: rgba(0,0,0,0.8);
+  display: inline-block;
+  padding: 15px 0;
+}
+
+#allow span:before,
+#allow span:after { 
+  content: "\2B06";
+  padding: 0 10px;
+}
+
+.music-icons {
+  margin: 60px 0;
+  text-align: center;
+}
+
+.music-icons img {
+  max-width: 18%;
+}
+ 
+.maligna-logo {
+  display: block;
+  margin: 0 auto;
+  border-top: 5px solid rgba(255,255,255,0.8);
+  width: 100%;
+  max-width: 450px;
+  padding-top: 160px;
+}
+
+.maligna-logo img {
+  opacity: 0.8;
+  max-width: 100%;
+}
+
+.maligna-logo:hover img {
+  opacity: 1;
+}
+
+p.maligna-desc {
+  font: 20px/1.6 'Helvetica', sans-serif;
+  text-align: left;
+  max-width: 520px;
+  margin: 0 auto;
+  text-transform: none;
+}
+
+#mc-embedded-subscribe-form {
+  background: #fff;
+}
+
+div#mc_embed_signup {
+    max-width: 520px;
+    width: 100%;
+    margin: 40px auto;
+}
+div#mc_embed_signup h3 {
+    text-align: center;
+    font: bold 30px 'Helvetica', sans-serif;
+}
+.mc-field-group {
+    width: 100%;
+}
+.mc-field-group input {
+    width: 100%;
+}
+input#mc-embedded-subscribe {
+    width: 100%;
+}
+
+input[type="email"],
+input[type="submit"] {
+  padding: 10px;
+  border: solid 5px #000;
+  background: transparent;
+  font-size: 24px;
+  font-style: italic;
+  margin: 0;
+  text-align: center;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #000;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #000;
+    opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #000;
+    opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #000;
+}
+
+input[type="submit"] {
+  cursor: pointer;;
+  cursor: hand;
+  background: #000;
+  color: #fff;
+}
+
+p.social-links {
+  margin: 40px 0 80px;
+  text-align: center;
+  font-size: 18px;
+}
+
+p.social-links a {
+  color: #fff;
+  text-decoration: none;
 }
