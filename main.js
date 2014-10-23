@@ -68,12 +68,6 @@ function init() {
   // FOG
   scene.fog = new THREE.FogExp2( 0x9999ff, 0.00025 );
 
-  // SETUP CAMERA CONTROLLER
-  if( SCREEN_WIDTH > 1600 )
-    headtrackr.controllers.three.realisticAbsoluteCameraControl(camera, 5, [0,-20,1100], movieScreen.position, { damping : 0.9 });
-  else
-    headtrackr.controllers.three.realisticAbsoluteCameraControl(camera, 6, [0,-20,750], movieScreen.position, { damping : 0.9 });
-
   // EVENT: headtrackr status
   document.addEventListener('headtrackrStatus', 
     function (event) {
@@ -85,12 +79,18 @@ function init() {
       }
 
       // CAMERA FOUND: HIDE ALLOW NOTICE
-      if (event.status == "camera found") 
+      if (event.status == "camera found") {
         document.getElementById('allow').style.opacity = '0'; 
-
+        // SETUP CAMERA CONTROLLER
+        if( SCREEN_WIDTH > 1600 )
+          headtrackr.controllers.three.realisticAbsoluteCameraControl(camera, 5, [0,-20,1100], movieScreen.position, { damping : 0.9 });
+        else
+          headtrackr.controllers.three.realisticAbsoluteCameraControl(camera, 6, [0,-20,750], movieScreen.position, { damping : 0.9 });
+      }
       // NO CAMERA: HIDE ALLOW NOTICE, PLAY VIDEO
       if (event.status == "no camera") {
         document.getElementById('allow').style.opacity = '0'; 
+        headtrackr.controllers.three.realisticAbsoluteCameraControl(camera, 1, [0,-20,650], movieScreen.position, { damping : 0.9 });
         video.play();
       }
   });  
