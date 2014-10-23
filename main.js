@@ -31,7 +31,9 @@ function init() {
 
   
   // Face detection setup
-  var htracker = new headtrackr.Tracker({cameraOffset : -6.5});
+
+  var offset = SCREEN_HEIGHT > 950 ? -6.5 : 0;
+  var htracker = new headtrackr.Tracker({cameraOffset : offset});
   htracker.init(videoInput, canvasInput);
   htracker.start();
   // EVENTS
@@ -88,7 +90,26 @@ function init() {
   camera.position.set(0,0,900);
   camera.lookAt(movieScreen.position);
 
+  /////////
+  // SKY //
+  /////////
+  
+  // recommend either a skybox or fog effect (can't use both at the same time) 
+  // without one of these, the scene's background color is determined by webpage background
 
+  // make sure the camera's "far" value is large enough so that it will render the skyBox!
+
+  // BAckground Image
+  var bgMaterial = new THREE.MeshLambertMaterial({
+    map: THREE.ImageUtils.loadTexture('img/cover.jpg')
+  });
+            
+  var bg = new THREE.Mesh(new THREE.CubeGeometry( SCREEN_WIDTH + 700, SCREEN_HEIGHT + 700, 1), bgMaterial);
+  bg.position.set(0,0,-600);
+  scene.add(bg);
+
+  // fog must be added to scene before first render
+  scene.fog = new THREE.FogExp2( 0x9999ff, 0.00025 );
   // set up camera controller
   headtrackr.controllers.three.realisticAbsoluteCameraControl(camera, 3, [0,-20,900], movieScreen.position, { damping : 0.9 });
 
@@ -110,7 +131,6 @@ function animate() {
 }
 
 function update() {
-    controls.update();
 }
 
 function render() { 
