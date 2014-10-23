@@ -105,6 +105,12 @@ h2 {
   margin-left: -50px;
 }
 
+#content img {
+  display: block;
+  margin: 15px auto;
+  max-width: 100%;
+}
+
 #cover {
     max-width: 500px;
     margin: 0 auto 30px;
