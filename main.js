@@ -84,10 +84,9 @@ function init() {
 
   // create a set of coordinate axes to help orient user
   //  //    specify length in pixels in each direction
-  var axes = new THREE.AxisHelper(200);
-  scene.add( axes );
+  // var axes = new THREE.AxisHelper(200);  scene.add( axes );
   
-  camera.position.set(0,0,900);
+  camera.position.set(0,0,100);
   camera.lookAt(movieScreen.position);
 
   /////////
@@ -111,7 +110,10 @@ function init() {
   // fog must be added to scene before first render
   scene.fog = new THREE.FogExp2( 0x9999ff, 0.00025 );
   // set up camera controller
-  headtrackr.controllers.three.realisticAbsoluteCameraControl(camera, 3, [0,-20,900], movieScreen.position, { damping : 0.9 });
+  if( SCREEN_WIDTH > 1700 )
+    headtrackr.controllers.three.realisticAbsoluteCameraControl(camera, 3, [0,-20,900], movieScreen.position, { damping : 0.9 });
+  else
+    headtrackr.controllers.three.realisticAbsoluteCameraControl(camera, 3, [0,-20,1200], movieScreen.position, { damping : 0.9 });
 
   document.addEventListener('headtrackrStatus', 
     function (event) {
@@ -121,6 +123,9 @@ function init() {
           video.play();
         }, 1000);
       }
+
+      if (event.status == "camera found") 
+        document.getElementById('allow').style.display = 'none'; 
   });  
 }
 
@@ -141,4 +146,13 @@ function render() {
   }
 
   renderer.render( scene, camera );
+}
+
+var content = document.getElementById('content');
+content.onmouseover = function () {
+  content.style.top = '95vh';
+}
+
+content.onmouseleave = function () {
+  content.style.top = '100vh';
 }
