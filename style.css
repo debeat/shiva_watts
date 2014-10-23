@@ -82,7 +82,7 @@ h2 {
   position: relative;
   top: 100vh;
   z-index: 99999;
-  max-width: 800px;
+  max-width: 950px;
   font-size: 29px;
   color: rgb(255, 255, 255);
   margin: 0 auto;
@@ -152,12 +152,7 @@ h2 {
 }
 
 .maligna-logo img {
-  opacity: 0.8;
   max-width: 100%;
-}
-
-.maligna-logo:hover img {
-  opacity: 1;
 }
 
 p.maligna-desc {
