@@ -60,6 +60,10 @@ body {
   font-family: 'Julius Sans One', sans-serif;
 }
 
+#headtrackerMessage {
+  font-family: 'Julius Sans One', sans-serif;
+}
+
 h1, h2 {
   text-align: center;
 }

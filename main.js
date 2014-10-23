@@ -35,7 +35,6 @@ function init() {
   var offset = SCREEN_HEIGHT > 950 ? -6.5 : 0;
   var htracker = new headtrackr.Tracker({cameraOffset : offset});
   htracker.init(videoInput, canvasInput);
-  htracker.start();
   // EVENTS
   THREEx.WindowResize(renderer, camera);
   THREEx.FullScreen.bindKey({ charCode : 'm'.charCodeAt(0) });
@@ -130,6 +129,7 @@ function init() {
         video.play();
       }
   });  
+  htracker.start();
 }
 
 function animate() {
@@ -153,7 +153,7 @@ function render() {
 
 var content = document.getElementById('content');
 content.onmouseover = function () {
-  content.style.top = '95vh';
+  content.style.top = '85vh';
 }
 
 content.onmouseleave = function () {
