@@ -36,6 +36,7 @@ function init() {
   var htracker = new headtrackr.Tracker({cameraOffset : offset});
   htracker.init(videoInput, canvasInput);
   htracker.start();
+
   // EVENTS
   THREEx.WindowResize(renderer, camera);
   THREEx.FullScreen.bindKey({ charCode : 'm'.charCodeAt(0) });

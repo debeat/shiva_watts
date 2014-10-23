@@ -50,6 +50,15 @@ canvas {
   height: 100%;
 }
 
+body {
+  font-family: 'Permanent Marker', cursive;
+  font-family: 'Permanent Marker', cursive;
+  font-family: 'Economica', sans-serif;
+  font-family: 'Syncopate', sans-serif;
+  font-family: 'Jura', sans-serif;
+  font-family: 'Electrolize', sans-serif;
+  font-family: 'Julius Sans One', sans-serif;
+}
 
 .container {
   padding: 30px;
@@ -60,7 +69,6 @@ canvas {
   font-size: 29px;
   color: rgb(255, 255, 255);
   margin: 0 auto;
-  font-family: 'Permanent Marker', cursive;
   line-height: 2.4;
   letter-spacing: 3px;
   text-align: justify;
@@ -87,7 +95,6 @@ canvas {
   top: 0;
   z-index: 99999;
   text-align: center;
-  font-family: 'Permanent Marker';
 }
 
 #allow span {
