@@ -108,6 +108,7 @@ h2 {
 }
 
 #allow {
+  transition: all 500ms;
   color: #fff;
   width: 100%;
   position: fixed;

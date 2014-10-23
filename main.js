@@ -123,7 +123,12 @@ function init() {
       }
 
       if (event.status == "camera found") 
-        document.getElementById('allow').style.display = 'none'; 
+        document.getElementById('allow').style.opacity = '0'; 
+
+      if (event.status == "no camera") {
+        document.getElementById('allow').style.opacity = '0'; 
+        video.play();
+      }
   });  
 }
 
