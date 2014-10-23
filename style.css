@@ -64,7 +64,7 @@ body {
   font-family: 'Julius Sans One', sans-serif;
 }
 
-h1, h2 {
+h1, h2, h3 {
   text-align: center;
 }
 
@@ -112,19 +112,36 @@ h2 {
 }
 
 #allow {
-  transition: all 500ms;
+  transition: opacity 500ms;
   color: #fff;
   width: 100%;
   position: fixed;
   top: 0;
   z-index: 99999;
   text-align: center;
+  font-size: 2em;
 }
 
 #allow span {
   background: rgba(0,0,0,0.8);
+  color: #fff;
   display: inline-block;
   padding: 15px 0;
+  -webkit-animation: flashing 100ms infinite linear; /* Chrome, Safari, Opera */ 
+  animation: flashing 400ms infinite linear;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+@-webkit-keyframes flashing {
+  0% {
+    background: rgba(255,255,255,1);
+    color: #000;
+  }
+  100% {
+    background: rgba(0,0,0,0.8);
+    color: #fff;
+  }
 }
 
 #allow span:before,

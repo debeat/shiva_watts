@@ -78,7 +78,6 @@ function init() {
   var movieGeometry = new THREE.PlaneGeometry( videoImage.width, videoImage.height, 4, 4 );
   var movieScreen = new THREE.Mesh( movieGeometry, movieMaterial );
   movieScreen.position.set(0,-80,0);
-  movieScreen.rotation.z += 3.14159265;
   scene.add(movieScreen);
 
   // create a set of coordinate axes to help orient user
@@ -107,14 +106,13 @@ function init() {
   // fog must be added to scene before first render
   scene.fog = new THREE.FogExp2( 0x9999ff, 0.00025 );
   // set up camera controller
-  if( SCREEN_WIDTH > 1700 )
-    headtrackr.controllers.three.realisticAbsoluteCameraControl(camera, 3, [0,-20,900], movieScreen.position, { damping : 0.9 });
+  if( SCREEN_WIDTH > 1600 )
+    headtrackr.controllers.three.realisticAbsoluteCameraControl(camera, 5, [0,-20,1100], movieScreen.position, { damping : 0.9 });
   else
     headtrackr.controllers.three.realisticAbsoluteCameraControl(camera, 6, [0,-20,750], movieScreen.position, { damping : 0.9 });
 
   document.addEventListener('headtrackrStatus', 
     function (event) {
-      console.log(event.status);
       if (event.status == "found") {
         setTimeout( function() {
           video.play();
