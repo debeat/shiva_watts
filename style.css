@@ -60,6 +60,19 @@ body {
   font-family: 'Julius Sans One', sans-serif;
 }
 
+h1, h2 {
+  text-align: center;
+}
+
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 0.7em;
+}
+
 .container {
   padding: 30px;
   position: relative;
@@ -86,6 +99,12 @@ body {
   top: -100px;
   left: 50%;
   margin-left: -50px;
+}
+
+#cover {
+    max-width: 500px;
+    margin: 0 auto 30px;
+    display: block;
 }
 
 #allow {
