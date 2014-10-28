@@ -159,6 +159,8 @@ h2 {
 .music-icons {
   margin: 60px 0;
   text-align: center;
+  display: flex;
+  justify-content: space-around;
 }
 
 .music-icons img {

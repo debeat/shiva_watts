@@ -5,7 +5,14 @@
 AAAA - SHIVA WATTS
 
 ALL CODE AND SHIT BY CAS
-Source: https://github.com/mixcas/outworld_music
+Source: https://github.com/mixcas/shiva_watts
+
+
+Special thanks to the peeps who helped with the vid:
+Alejandro Ortiz Pellicer
+Ixchel Zazueta
+Axel Novoa
+Ramoncito Jaramillo
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -32,26 +39,30 @@ Source: https://github.com/mixcas/outworld_music
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
 
-  <title></title>
+  <title>AAAA - SHIVA WATTS</title>
 
   <link rel="stylesheet" type="text/css" href="style.min.css">
 
   <link rel="shortcut icon" href="img/favicon.jpg" />
   <link rel="apple-touch-icon" href="img/favicon.jpg">
 
-  <link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Michroma|Syncopate|Jura|Electrolize|Julius+Sans+One' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Julius+Sans+One' rel='stylesheet' type='text/css'>
 </head>
-<body>
 
+<body>
 <main>
   <div id="allow"><span>Allow us to use your webcam</span></div>
+  <video id="viewVideo" style="display: none" loop>
+    <source src="videos/video.mp4" type="video/mp4">
+    <source src="videos/video.webm" type="video/webm">
+    <source src="videos/video.ogv" type="video/ogg; codecs="theora, vorbis"">
+  </video>
   <div class="container" id="content">
     <h2>Maligna presents</h2>
     <h1>AAAA - SHIVA WATTS</h1>
     <img src="img/cover.jpg" id="cover">
     <h3>[MALCD02]</h3>
-    <p>Hey boys, hey girls. Get ready to get intoxicated with sounds from future times brought to the present through analog gear as the freshest electronic producer in Mexico brings you his debut album, Shiva Watts, through MALIGNA this October. World Wide Weirdos, meet Gabo Barranco, meet AAAA, your new source of Acid Techno Dystopia. Hope you're ready for it.</p>
+    <p>Hey boys, hey girls. Get ready to get intoxicated with sounds from future times brought to the present through analog gear as the freshest electronic producer in Mexico brings you his debut album, Shiva Watts, through MALIGNA this October. World Wide Weirdos, meet Gabo Barranco, meet AAAA, your new source of Acid Techno Dystopia.</p>
     <img src="img/front.jpg" alt="Album cover">
     <img src="img/back.jpg" alt="Album back">
     <img src="img/inside.jpg" alt="Inside album">
@@ -60,10 +71,10 @@ Source: https://github.com/mixcas/outworld_music
     
     <p class="music-icons">
       <a href="http://maligna.bandcamp.com/album/shiva-watts-malcd02" class="bandcamp" target="_blank"><img src="img/bandcamp.png" alt="Bandcamp"></a>
-      <!-- <a href="https://itunes.apple.com/us/album/outworld-music/id911350845" target="_blank" class="itunes"><img src="img/itunes.png" alt="iTunes"></a>
-      <a href="https://play.google.com/store/music/album/Ritualz_Outworld_Music?id=Benfew6naynssx4glnw6d3lypne" target="_blank" class="play"><img src="img/play.png" alt="Google Play"></a>
-      <a href="http://www.amazon.com/Outworld-Music-Ritualz/dp/B00N47MS7O/" class="amazon" target="_blank"><img src="img/amazon.png" alt="Amazon"></a>
-      <a href="http://open.spotify.com/album/7AUJ7j9vDolkAlue4UXxLg" class="spotify" target="_blank"><img src="img/spotify.png" alt="Spotify"></a> -->
+      <a href="https://itunes.apple.com/album/shiva-watts/id923233066" target="_blank" class="itunes"><img src="img/itunes.png" alt="iTunes"></a>
+      <a href="https://play.google.com/store/music/artist/AAAA?id=Ae7a7ctypjazgjhfznhejydfgcm" target="_blank" class="play"><img src="img/play.png" alt="Google Play"></a>
+      <a href="http://www.amazon.com/Shiva-Watts-Aaaa/dp/B00O30UA2G/" class="amazon" target="_blank"><img src="img/amazon.png" alt="Amazon"></a>
+      <a href="https://play.spotify.com/album/6plwSRZENTBvicJaAEmt7p" class="spotify" target="_blank"><img src="img/spotify.png" alt="Spotify"></a>
     </p>
 
     <a class="maligna-logo" href="http://maligna.net/" target="_blank"><img src="img/maligna-logo.png"></a>
@@ -94,11 +105,6 @@ Source: https://github.com/mixcas/outworld_music
 <div id="ThreeJS" style="position: fixed; left:0px; top:0px"></div>
 <canvas id="inputCanvas" width="320" height="240" style="display:none"></canvas>
 <video id="inputVideo" autoplay loop></video>
-<video id="viewVideo" style="display: none" loop>
-  <source src="videos/video.mp4" type="video/mp4">
-  <source src="videos/video.webm" type="video/webm">
-  <source src="videos/video.ogv" type="video/ogg; codecs="theora, vorbis"">
-</video>
 <script type="text/javascript" src="main.min.js"></script>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
